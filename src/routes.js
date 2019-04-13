@@ -11,10 +11,6 @@ routes.get("/", (req, res) => {
   return res.send("Hello world");
 });
 
-routes.get("/rafa", (req, res) => {
-  return res.send("Hello Rafa");
-});
-
 routes.post("/boxes", BoxController.store);
 routes.get("/boxes/:id", BoxController.show);
 

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -16,12 +17,11 @@ io.on("connection", socket => {
   });
 });
 
-mongoose.connect(
-  "mongodb+srv://<CLUSTER>:<PSW>@omnistack-wl53n.mongodb.net/omnistack?retryWrites=true",
-  {
-    useNewUrlParser: true
-  }
-);
+const db = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${
+  process.env.DB_HOST
+}/omnistack?retryWrites=true`;
+
+mongoose.connect(db, { useNewUrlParser: true });
 
 app.use((req, res, next) => {
   req.io = io;
